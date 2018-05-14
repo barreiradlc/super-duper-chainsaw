@@ -1,11 +1,17 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Perfil
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+  <p>Foto: {{(perfilData | async)?.foto}}</p>
+  <p>Nome: {{(perfilData | async)?.nome}}</p>
+  <p>Sobrenome: {{(perfilData | async)?.sobrenome}}</p>
+
+  <button ion-button outline (click)="editarPerfil()">Editar perfil</button>
 
 </ion-content>
