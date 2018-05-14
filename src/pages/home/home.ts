@@ -19,7 +19,7 @@ export class HomePage {
 
   ionViewDidLoad(){
     this.movieProvider.getLatestMovies().subscribe(
-        data => {
+      data => {
           const response = (data as any);
           const objeto_retorno = JSON.parse(response._body);
           this.lista_filmes = objeto_retorno.results;
