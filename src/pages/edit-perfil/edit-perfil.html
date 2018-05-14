@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-item>
     <ion-label>Foto</ion-label>
-    <ion-input [(ngModel)]="perfil.foto"></ion-input>
+    <ion-input type="file" [(ngModel)]="perfil.foto"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -29,6 +29,6 @@
     <ion-input [(ngModel)]="perfil.sobrenome"></ion-input>
   </ion-item>
 
-  <button ion-button block (click)="editarPerfil()">Editar perfil</button>
+  <button ion-button block (click)="confirmaPerfil()">Editar perfil</button>
 
 </ion-content>

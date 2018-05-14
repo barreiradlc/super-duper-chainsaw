@@ -1,5 +1,5 @@
 export interface Perfil {
-  foto: string;
+  foto: any;
   nome: string;
   sobrenome: string;
 }

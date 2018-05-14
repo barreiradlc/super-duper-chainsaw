@@ -1,5 +1,7 @@
+import { Perfil } from './../../models/perfil';
+import { Perfil } from '../../models/perfil';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { EditPerfilPage } from '../edit-perfil/edit-perfil';
@@ -10,11 +12,12 @@ import { EditPerfilPage } from '../edit-perfil/edit-perfil';
 })
 export class AboutPage {
 
-  // perfilData: FirebaseObjectObservable<Perfil>
+  perfilData: FirebaseObjectObservable<Perfil>
 
   constructor(  private afDatabase: AngularFireDatabase,
                 private afAuth: AngularFireAuth,
-                public navCtrl: NavController) {
+                public navCtrl: NavController,
+                private toast: ToastController) {
 
   }
 
@@ -22,4 +25,22 @@ export class AboutPage {
     this.navCtrl.push(EditPerfilPage)
   }
 
+  ionViewWillLoad(){
+    this.afAuth.authState.take(1).subscribe(data => {
+      if (data && data.email && data.uid) {
+        this.toast.create({
+          message: `Bem vindo a meu portifolio, ${data.email}`,
+          duration: 3000
+        }).present();
+        this.perfilData = this.afDatabase.object(`perfil/${data.uid}`)
+
+      }
+      else {
+        this.toast.create({
+          message: `Não foi possível identificar seu cadastro.`,
+          duration: 3000
+        }).present();
+      }
+    })
+  }
 }

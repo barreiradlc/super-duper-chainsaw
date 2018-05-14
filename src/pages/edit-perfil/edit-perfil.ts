@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Perfil } from '../../models/perfil';
+import { Perfil } from './../../models/perfil';
+// import { Perfil } from '../../models/perfil';
 import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the EditPerfilPage page.
@@ -26,10 +27,10 @@ export class EditPerfilPage {
                 public navParams: NavParams) {
   }
 
-  editarPerfil(){
+  confirmaPerfil(){
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDatabase.object(`perfil/${auth.uid}`).set(this.perfil)
-        .then(() => this.navCtrl.push(TabsPage));
+        .then(() => this.navCtrl.setRoot(TabsPage));
     })
   }
 
