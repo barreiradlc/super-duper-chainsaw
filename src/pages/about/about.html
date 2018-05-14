@@ -12,6 +12,7 @@
   <p>Nome: {{(perfilData | async)?.nome}}</p>
   <p>Sobrenome: {{(perfilData | async)?.sobrenome}}</p>
 
-  <button ion-button outline (click)="editarPerfil()">Editar perfil</button>
+ 
+ <button ion-fab><ion-icon name="create" (click)="editarPerfil()"></ion-icon></button>
 
 </ion-content>

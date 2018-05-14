@@ -3,17 +3,17 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireObject, AngularFireDatabase } from 'angularfire2/database';
-// import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { EditPerfilPage } from '../edit-perfil/edit-perfil';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-
-
-  perfilData: AngularFireObject<Perfil>
+  
+  
+  // perfilData: AngularFireObject<Perfil[]>;
 
   constructor(  private afDatabase: AngularFireDatabase,
                 private afAuth: AngularFireAuth,
@@ -26,13 +26,14 @@ export class AboutPage {
   }
 
   ionViewWillLoad(){
+    
     this.afAuth.authState.take(1).subscribe(data => {
       if (data && data.email && data.uid) {
         this.toast.create({
           message: `Bem vindo a meu portifolio, ${data.email}`,
           duration: 3000
         }).present();
-        this.perfilData = this.afDatabase.object(`perfil/${data.uid}`)
+        // this.perfilData = this.afDatabase.object(`perfil/${data.uid}`)
       }
       else {
         this.toast.create({
@@ -41,5 +42,6 @@ export class AboutPage {
         }).present();
       }
     })
+    
   }
 }
