@@ -21,12 +21,27 @@
 
   <ion-item>
     <ion-label>Nome</ion-label>
-    <ion-input [(ngModel)]="perfil.nome"></ion-input>
+    <ion-input type="text" [(ngModel)]="perfil.nome"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Sobrenome</ion-label>
-    <ion-input [(ngModel)]="perfil.sobrenome"></ion-input>
+    <ion-input type="text" [(ngModel)]="perfil.sobrenome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Data de nascimento</ion-label>
+    <ion-input type="date" [(ngModel)]="perfil.dataDeNascimento"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cpf</ion-label>
+    <ion-input type="number" [(ngModel)]="perfil.cpf"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>CEP</ion-label>
+    <ion-input type="number" [(ngModel)]="perfil.cep"></ion-input>
   </ion-item>
 
   <button ion-button block (click)="confirmaPerfil()">Editar perfil</button>

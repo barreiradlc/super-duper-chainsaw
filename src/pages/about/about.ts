@@ -1,9 +1,9 @@
-import { Perfil } from './../../models/perfil';
 import { Perfil } from '../../models/perfil';
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireObject, AngularFireDatabase } from 'angularfire2/database';
+// import { FirebaseObjectObservable, AngularFireDatabase } from 'angularfire2/database';
 import { EditPerfilPage } from '../edit-perfil/edit-perfil';
 
 @Component({
@@ -12,17 +12,17 @@ import { EditPerfilPage } from '../edit-perfil/edit-perfil';
 })
 export class AboutPage {
 
-  perfilData: FirebaseObjectObservable<Perfil>
+
+  perfilData: AngularFireObject<Perfil>
 
   constructor(  private afDatabase: AngularFireDatabase,
                 private afAuth: AngularFireAuth,
                 public navCtrl: NavController,
-                private toast: ToastController) {
-
-  }
+                private toast: ToastController){}
+                // private obj: FirebaseObjectObservable) {}
 
   editarPerfil(){
-    this.navCtrl.push(EditPerfilPage)
+    this.navCtrl.push('EditPerfilPage')
   }
 
   ionViewWillLoad(){
@@ -33,7 +33,6 @@ export class AboutPage {
           duration: 3000
         }).present();
         this.perfilData = this.afDatabase.object(`perfil/${data.uid}`)
-
       }
       else {
         this.toast.create({
